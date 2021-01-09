@@ -216,7 +216,7 @@ async def on_message(msg):
     ans = "```Type : " + poke + "\nMoves \n" + mx + "```" 
     await msg.channel.send(ans);
   if msg.content == "$source" :
-    await msg.channel.send('https://github.com/MasterIceZ/Programmable/tree/main/Discord_bot')
+    await msg.channel.send('https://github.com/MasterIceZ/icy-bot')
 
 alive()
 
