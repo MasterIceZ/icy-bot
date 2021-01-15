@@ -8,6 +8,9 @@ import json
 
 client = discord.Client()
 
+ver = '1.0.0.1'
+date2day = '15-1-2021'
+
 def get_meme() :
   res = requests.get("https://api.imgur.com/3/g/memes/jFLlwhY")
   dat = json.loads(res.text)
@@ -57,7 +60,13 @@ lover = [
   ":heart_eyes:"
 ]
 
-command_list = "```nim\nCommand List\n $help for help\n $source for source code\n $q or $quote for Quotes\n $add [Quote] for add Quote \n $remove [Quote] for remove Quote\n $list for List of Quotes\n $fixed for Fixed Quotes\n $anime for anime quote\n $greet for Greetings\n $กินไรดี for asking what should you eat\n $newmenu for add menu\n $remenu [Menu] for remove menu\n $say to say somthing```"
+greet = [
+  "ซาหวาดดีค้าบบบ",
+  "จ๊ะเอ๋ตัวเอง",
+  "ดีจ้าา"
+]
+
+command_list = "```nim\nCommand List\n $help for help\n $source for source code\n $version for check last update of bot\n $q or $quote for Quotes\n $add [Quote] for add Quote \n $remove [Quote] for remove Quote\n $list for List of Quotes\n $fixed for Fixed Quotes\n $anime for anime quote\n $greet for Greetings\n $กินไรดี for asking what should you eat\n $newmenu for add menu\n $remenu [Menu] for remove menu\n $say to say somthing\n $report for report bug```"
 
 def get_poke(s) :
   a = "https://pokeapi.co/api/v2/pokemon/" + s
@@ -101,6 +110,8 @@ async def on_ready():
 async def on_message(msg):
   if msg.author == client.user:
     return
+  if msg.content == "$report" :
+    await msg.channel.send('Please add issue at https://github.com/MasterIceZ/icy-bot/issues')
   if msg.content.startswith('$say') :
     s = msg.content.split('$say ',1)[1]
     await msg.channel.send(s)
@@ -217,7 +228,9 @@ async def on_message(msg):
     await msg.channel.send(ans);
   if msg.content == "$source" :
     await msg.channel.send('https://github.com/MasterIceZ/icy-bot')
-
+  if msg.content == "$version" :
+    ans = '```nim\nVersion : ' + ver + '\nDate : ' + date2day + '```'
+    await msg.channel.send(ans)
 alive()
 
 client.run(os.getenv('TOKEN'))
