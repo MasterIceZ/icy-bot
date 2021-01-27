@@ -8,7 +8,7 @@ import json
 
 client = discord.Client()
 
-ver = '1.0.1.0'
+ver = '1.0.1.1'
 date2day = '27-1-2021'
 
 def get_meme() :
@@ -107,10 +107,17 @@ async def on_ready():
   await client.change_presence(activity = discord.Streaming(name = 'Free Fire', url = 'https://www.twitch.tv/directory/game/Garena%20Free%20Fire'))
 
 funny = [
-  "555",
+  "55",
   "HaHa",
   "haha",
-  "ahah"
+  "ahah",
+  "Lmao",
+  "lmao",
+  "LMAO",
+  "ha",
+  "Ha",
+  "ฮ่า",
+  "ขำ"
 ]
 
 @client.event
