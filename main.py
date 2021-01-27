@@ -8,8 +8,8 @@ import json
 
 client = discord.Client()
 
-ver = '1.0.1.2'
-date2day = '27-1-2021'
+ver = '1.0.1.3'
+date2day = '28-1-2021'
 
 def get_meme() :
   res = requests.get("https://api.imgur.com/3/g/memes/jFLlwhY")
