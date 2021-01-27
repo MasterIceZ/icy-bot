@@ -8,7 +8,7 @@ import json
 
 client = discord.Client()
 
-ver = '1.0.1.1'
+ver = '1.0.1.2'
 date2day = '27-1-2021'
 
 def get_meme() :
@@ -64,6 +64,12 @@ greet = [
   "ซาหวาดดีค้าบบบ",
   "จ๊ะเอ๋ตัวเอง",
   "ดีจ้าา"
+]
+
+banner = [
+  "SAUCE",
+  "Sauce",
+  "sauce"
 ]
 
 command_list = "```nim\nCommand List\n $help for help\n $source for source code\n $version for check last update of bot\n $q or $quote for Quotes\n $add [Quote] for add Quote \n $remove [Quote] for remove Quote\n $list for List of Quotes\n $fixed for Fixed Quotes\n $anime for anime quote\n $greet for Greetings\n $กินไรดี for asking what should you eat\n $newmenu for add menu\n $remenu [Menu] for remove menu\n $say to say somthing\n $report for report bug```"
@@ -242,6 +248,9 @@ async def on_message(msg):
     await msg.channel.send(ans);
   if any(word in msg.content for word in funny) :
     await msg.channel.send("ตลกมากมั้งไอเวร ตกนรกไป")
+  if any(word in msg.content for word in banner) :
+    ans = "sauce หน้ามึงอ่ะมีแต่ source โว้ย"
+    await msg.channel.send(ans)
   if msg.content == "$source" :
     await msg.channel.send('https://github.com/MasterIceZ/icy-bot')
   if msg.content == "$version" :
