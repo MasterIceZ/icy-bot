@@ -116,12 +116,9 @@ funny = [
   "55",
   "HaHa",
   "haha",
-  "ahah",
   "Lmao",
   "lmao",
   "LMAO",
-  "ha",
-  "Ha",
   "ฮ่า",
   "ขำ"
 ]
