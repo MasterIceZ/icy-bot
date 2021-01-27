@@ -106,6 +106,13 @@ async def on_ready():
   print('Icy : {0.user}666-'.format(client))
   await client.change_presence(activity = discord.Streaming(name = 'Free Fire', url = 'https://www.twitch.tv/directory/game/Garena%20Free%20Fire'))
 
+funny = [
+  "555",
+  "HaHa",
+  "haha",
+  "ahah"
+]
+
 @client.event
 async def on_message(msg):
   if msg.author == client.user:
@@ -226,11 +233,12 @@ async def on_message(msg):
     mx = m1 + " " + m3 + "\n" + m2 + " " + m4
     ans = "```Type : " + poke + "\nMoves \n" + mx + "```" 
     await msg.channel.send(ans);
+  if any(word in msg.content for word in funny) :
+    await msg.channel.send("ตลกมากมั้งไอเวร ตกนรกไป")
   if msg.content == "$source" :
     await msg.channel.send('https://github.com/MasterIceZ/icy-bot')
   if msg.content == "$version" :
     ans = '```nim\nVersion : ' + ver + '\nDate : ' + date2day + '```'
     await msg.channel.send(ans)
 alive()
-
 client.run(os.getenv('TOKEN'))
