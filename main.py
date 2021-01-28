@@ -8,7 +8,7 @@ import json
 
 client = discord.Client()
 
-ver = '1.0.1.3'
+ver = '1.0.1.4'
 date2day = '28-1-2021'
 
 def get_meme() :
@@ -245,7 +245,7 @@ async def on_message(msg):
     await msg.channel.send(ans);
   if any(word in msg.content for word in funny) :
     await msg.channel.send("ตลกมากมั้งไอเวร ตกนรกไป")
-  if any(word in msg.content for word in banner) :
+  if any(word in msg.content for word in banner) or msg.content == 'S A U C E':
     ans = "sauce หน้ามึงอ่ะมีแต่ source โว้ย"
     await msg.channel.send(ans)
   if msg.content == "$source" :
