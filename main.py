@@ -9,6 +9,7 @@ import time
 
 client = discord.Client()
 
+<<<<<<< HEAD
 ver = '1.0.2.0'
 date2day = '08-2-2021'
 
@@ -24,6 +25,10 @@ def get_mean(name) :
   print(dat['definitions'][0]['definition'])
   return dat['definitions']
 
+=======
+ver = '1.0.1.4'
+date2day = '28-1-2021'
+>>>>>>> 6ebbe3cadd4fcf5b085a0d414ab533bf7e354116
 
 def get_meme() :
   res = requests.get("https://api.imgur.com/3/g/memes/jFLlwhY")
