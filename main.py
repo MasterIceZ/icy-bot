@@ -9,13 +9,12 @@ import time
 
 client = discord.Client()
 
-<<<<<<< HEAD
-ver = '1.0.2.0'
+ver = '1.0.2.1'
 date2day = '08-2-2021'
 
 def get_mean(name) :
   headers = {
-    'x-rapidapi-key': "df9db79419msh0330d70ce8835cep13b3acjsn2a63a4bbcb0f",
+    'x-rapidapi-key': os.getenv('TS'),
     'x-rapidapi-host': "wordsapiv1.p.rapidapi.com"
     }
   #uu = "https://wordsapiv1.p.rapidapi.com/words/incredible/definitions"
@@ -25,10 +24,6 @@ def get_mean(name) :
   print(dat['definitions'][0]['definition'])
   return dat['definitions']
 
-=======
-ver = '1.0.1.4'
-date2day = '28-1-2021'
->>>>>>> 6ebbe3cadd4fcf5b085a0d414ab533bf7e354116
 
 def get_meme() :
   res = requests.get("https://api.imgur.com/3/g/memes/jFLlwhY")
@@ -91,7 +86,7 @@ banner = [
   "sauce"
 ]
 
-command_list = "```nim\nCommand List\n $help for help\n $source for source code\n $version for check last update of bot\n $q or $quote for Quotes\n $add [Quote] for add Quote \n $remove [Quote] for remove Quote\n $list for List of Quotes\n $fixed for Fixed Quotes\n $anime for anime quote\n $greet for Greetings\n $กินไรดี for asking what should you eat\n $newmenu for add menu\n $remenu [Menu] for remove menu\n $say to say somthing\n $report for report bug```"
+command_list = "```nim\nCommand List\n $help for help\n $source for source code\n $version for check last update of bot\n $q or $quote for Quotes\n $add [Quote] for add Quote \n $remove [Quote] for remove Quote\n $list for List of Quotes\n $fixed for Fixed Quotes\n $anime for anime quote\n $greet for Greetings\n $กินไรดี for asking what should you eat\n $newmenu for add menu\n $remenu [Menu] for remove menu\n $say to say somthing\n $mean [word] to search for definitions of the word\n $report for report bug```"
 
 def get_poke(s) :
   a = "https://pokeapi.co/api/v2/pokemon/" + s
