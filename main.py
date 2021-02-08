@@ -5,11 +5,25 @@ from replit import db
 from runner import alive
 import requests
 import json
+import time
 
 client = discord.Client()
 
-ver = '1.0.1.3'
-date2day = '28-1-2021'
+ver = '1.0.2.0'
+date2day = '08-2-2021'
+
+def get_mean(name) :
+  headers = {
+    'x-rapidapi-key': "df9db79419msh0330d70ce8835cep13b3acjsn2a63a4bbcb0f",
+    'x-rapidapi-host': "wordsapiv1.p.rapidapi.com"
+    }
+  #uu = "https://wordsapiv1.p.rapidapi.com/words/incredible/definitions"
+  uu = "https://wordsapiv1.p.rapidapi.com/words/" + name + "/definitions"
+  res = requests.request("GET",uu,headers=headers)
+  dat = json.loads(res.text)
+  print(dat['definitions'][0]['definition'])
+  return dat['definitions']
+
 
 def get_meme() :
   res = requests.get("https://api.imgur.com/3/g/memes/jFLlwhY")
@@ -243,9 +257,15 @@ async def on_message(msg):
     mx = m1 + " " + m3 + "\n" + m2 + " " + m4
     ans = "```Type : " + poke + "\nMoves \n" + mx + "```" 
     await msg.channel.send(ans);
+  if msg.content.startswith('$mean') :
+    a = msg.content.split('$mean ',1)[1]
+    dat = get_mean(a)
+    l = len(dat)
+    for i in range(0,l,1) :
+      await msg.channel.send(str(i+1) + ". " + dat[i]['definition'])
   if any(word in msg.content for word in funny) :
     await msg.channel.send("ตลกมากมั้งไอเวร ตกนรกไป")
-  if any(word in msg.content for word in banner) :
+  if any(word in msg.content for word in banner) or msg.content == 'S A U C E':
     ans = "sauce หน้ามึงอ่ะมีแต่ source โว้ย"
     await msg.channel.send(ans)
   if msg.content == "$source" :
@@ -253,5 +273,12 @@ async def on_message(msg):
   if msg.content == "$version" :
     ans = '```nim\nVersion : ' + ver + '\nDate : ' + date2day + '```'
     await msg.channel.send(ans)
+  if msg.guild.name != '4/2 แฟมิลี่' :
+    return 
+  if msg.content.startswith('$role') :
+    r = msg.content.split('$role ', 1)[1]
+    user = msg.author
+    await user.add_roles(id(r))
+  
 alive()
 client.run(os.getenv('TOKEN'))
