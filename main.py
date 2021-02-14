@@ -3,69 +3,17 @@ import os
 import random
 from replit import db
 from runner import alive
-import requests
-import json
-import time
+from functions.get_means import get_mean
+from functions.get_animes import get_anime
+from functions.get_print import update_icy, delete_icy
+from functions.get_food import gin_add, gin_rem
+from functions.get_pokemon import get_poke, get_move
+from functions.get_help import get_com
 
 client = discord.Client()
 
 ver = '1.0.2.1'
 date2day = '08-2-2021'
-
-def get_mean(name) :
-  headers = {
-    'x-rapidapi-key': os.getenv('TS'),
-    'x-rapidapi-host': "wordsapiv1.p.rapidapi.com"
-    }
-  #uu = "https://wordsapiv1.p.rapidapi.com/words/incredible/definitions"
-  uu = "https://wordsapiv1.p.rapidapi.com/words/" + name + "/definitions"
-  res = requests.request("GET",uu,headers=headers)
-  dat = json.loads(res.text)
-  print(dat['definitions'][0]['definition'])
-  return dat['definitions']
-
-
-def get_meme() :
-  res = requests.get("https://api.imgur.com/3/g/memes/jFLlwhY")
-  dat = json.loads(res.text)
-  print(dat)
-  return "hello"
-
-def get_anime():
-  res = requests.get("https://animechanapi.xyz/api/quotes/random")
-  dat = json.loads(res.text)
-  return dat['data']
-
-def update_icy(icy_message,cha):
-  if cha in db.keys():
-    ice = db[cha]
-    ice.append(icy_message)
-    db[cha] = ice
-  else :
-    db[cha] = [icy_message]
-
-def delete_icy(idx,cha):
-  ice = db[cha]
-  if len(ice) > idx:
-    del ice[idx]
-  db[cha] = ice
-
-def gin_add(mass,cha) :
-  x = cha + "hew"
-  if x in db.keys() :
-    a = db[x]
-    a.append(mass)
-    db[x] = a
-  else :
-    db[x] = [mass]
-
-def gin_rem(idx,cha):
-  a = cha + "hew"
-  ice = db[a]
-  if len(ice) > idx:
-    del ice[idx]
-  db[a] = ice
-  
 
 lover = [
   "รักนะคะ",
@@ -85,41 +33,6 @@ banner = [
   "Sauce",
   "sauce"
 ]
-
-command_list = "```nim\nCommand List\n $help for help\n $source for source code\n $version for check last update of bot\n $q or $quote for Quotes\n $add [Quote] for add Quote \n $remove [Quote] for remove Quote\n $list for List of Quotes\n $fixed for Fixed Quotes\n $anime for anime quote\n $greet for Greetings\n $กินไรดี for asking what should you eat\n $newmenu for add menu\n $remenu [Menu] for remove menu\n $say to say somthing\n $mean [word] to search for definitions of the word\n $report for report bug```"
-
-def get_poke(s) :
-  a = "https://pokeapi.co/api/v2/pokemon/" + s
-  res = requests.get(a)
-  dat = json.loads(res.text)
-# print(dat)
-  b = dat['types'][0]['type']['name']
-  return b
-
-def get_move(s) :
-  a = "https://pokeapi.co/api/v2/pokemon/" + s
-  res = requests.get(a)
-  dat = json.loads(res.text)
-  used = []
-  rand1 = random.randint(0,len(dat['moves'])-1)
-  used.append(rand1)
-  rand2 = random.randint(0,len(dat['moves'])-1)
-  for rand2 in used :
-    rand2 = random.randint(0,len(dat['moves'])-1) 
-  used.append(rand2)
-  rand3 = random.randint(0,len(dat['moves'])-1)
-  for rand3 in used :
-    rand3 = random.randint(0,len(dat['moves'])-1) 
-  used.append(rand3)
-  rand4 = random.randint(0,len(dat['moves'])-1)
-  for rand4 in used :
-    rand4 = random.randint(0,len(dat['moves'])-1) 
-  used.append(rand4)
-  ans = []
-  for x in used :
-    us = dat['moves'][x]['move']['name']
-    ans.append(us)
-  return ans
 
 @client.event 
 async def on_ready():
@@ -146,18 +59,13 @@ async def on_message(msg):
   if msg.content.startswith('$say') :
     s = msg.content.split('$say ',1)[1]
     await msg.channel.send(s)
-  if msg.content == '$meme' :
-    q = get_meme()
-    await msg.channel.send(q)
   if msg.content == '$anime':
     q = get_anime()
     ans = q[0]['quote'] + "\n -" + q[0]['character'] + " [" + q[0]['anime'] + "]"
     await msg.channel.send(ans)
   if msg.content == '$help':
-    await msg.channel.send(command_list)
+    await msg.channel.send(get_com())
 # options = ls
-  if "icy" in db.keys():
-    options = db["icy"]
   if msg.content == '$quote':
     cha = msg.guild.name
     icy = random.choice(db[cha])
@@ -273,12 +181,6 @@ async def on_message(msg):
   if msg.content == "$version" :
     ans = '```nim\nVersion : ' + ver + '\nDate : ' + date2day + '```'
     await msg.channel.send(ans)
-  if msg.guild.name != '4/2 แฟมิลี่' :
-    return 
-  if msg.content.startswith('$role') :
-    r = msg.content.split('$role ', 1)[1]
-    user = msg.author
-    await user.add_roles(id(r))
   
 alive()
 client.run(os.getenv('TOKEN'))
