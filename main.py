@@ -12,8 +12,8 @@ from functions.get_help import get_com
 
 client = discord.Client()
 
-ver = '1.0.2.1'
-date2day = '08-2-2021'
+ver = '1.0.2.1a'
+date2day = '14-2-2021'
 
 lover = [
   "รักนะคะ",
