@@ -12,8 +12,8 @@ from functions.get_help import get_com
 
 client = discord.Client()
 
-ver = '1.0.2.1'
-date2day = '08-2-2021'
+ver = '1.0.2.1a'
+date2day = '14-2-2021'
 
 lover = [
   "รักนะคะ",
@@ -152,6 +152,7 @@ async def on_message(msg):
     await msg.channel.send(random.choice(db[msg.guild.name+"hew"]))
   if msg.content.startswith('$luv') :
     icy = msg.content.split('$luv', 1)[1]    
+    print(msg.content)
     ans = random.choice(lover) + icy
     await msg.channel.send(ans)
   if msg.content.startswith("$pokemon") :
@@ -172,6 +173,7 @@ async def on_message(msg):
     for i in range(0,l,1) :
       await msg.channel.send(str(i+1) + ". " + dat[i]['definition'])
   if any(word in msg.content for word in funny) :
+    print(msg.content)
     await msg.channel.send("ตลกมากมั้งไอเวร ตกนรกไป")
   if any(word in msg.content for word in banner) or msg.content == 'S A U C E':
     ans = "sauce หน้ามึงอ่ะมีแต่ source โว้ย"

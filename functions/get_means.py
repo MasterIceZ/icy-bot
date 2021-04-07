@@ -11,5 +11,6 @@ def get_mean(name) :
   uu = "https://wordsapiv1.p.rapidapi.com/words/" + name + "/definitions"
   res = requests.request("GET",uu,headers=headers)
   dat = json.loads(res.text)
+  print(dat)
   print(dat['definitions'][0]['definition'])
   return dat['definitions']
