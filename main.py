@@ -8,7 +8,7 @@ from functions.get_animes import get_anime
 from functions.get_print import update_icy, delete_icy
 from functions.get_food import gin_add, gin_rem
 from functions.get_help import get_com
-from functions.get_animePhoto import get_photo
+from functions.get_animePhoto import get_photo, nsfw_photo
 
 client = discord.Client()
 
@@ -175,6 +175,8 @@ async def on_message(msg):
   if msg.content == '$photo' :
     ur = get_photo()
     await msg.channel.send(ur)
-  
+  if msg.content == '$n_s_f_w_photo' :
+    ur = nsfw_photo()
+    await msg.channel.send(ur)
 alive()
 client.run(os.getenv('TOKEN'))

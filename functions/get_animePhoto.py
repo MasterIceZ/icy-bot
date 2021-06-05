@@ -39,3 +39,16 @@ def get_photo() :
   res = requests.get(ur)
   dat = json.loads(res.text)
   return dat['url']
+
+def nsfw_photo() :
+  ls = [
+    "waifu",
+    "neko",
+    "trap",
+    "blowjob"
+  ]
+  cat = ls[randint(0, len(ls))]
+  ur = "https://api.waifu.pics/nsfw/" + cat
+  res = requests.get(ur)
+  dat = json.loads(res.text)
+  return dat['url']
