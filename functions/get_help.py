@@ -16,6 +16,7 @@ s = [
   "$remenu [Menu] for remove menu",
   "$say to say somthing",
   "$mean [word] to search for definitions of the word",
+  "$photo to let bot send some random photo",
   "$report for report bug"
 ]
 

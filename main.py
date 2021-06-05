@@ -9,6 +9,7 @@ from functions.get_print import update_icy, delete_icy
 from functions.get_food import gin_add, gin_rem
 from functions.get_pokemon import get_poke, get_move
 from functions.get_help import get_com
+from functions.get_animePhoto import get_photo
 
 client = discord.Client()
 
@@ -183,6 +184,11 @@ async def on_message(msg):
   if msg.content == "$version" :
     ans = '```nim\nVersion : ' + ver + '\nDate : ' + date2day + '```'
     await msg.channel.send(ans)
+  if msg.content == '$photo' :
+    ur = get_photo()
+    # urllib.request.urlretrieve(ur, "Name.jpg")
+    # await msg.channel.send(file=discord.File('Name.jpg'))
+    await msg.channel.send(ur)
   
 alive()
 client.run(os.getenv('TOKEN'))
