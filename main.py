@@ -7,7 +7,6 @@ from functions.get_means import get_mean
 from functions.get_animes import get_anime
 from functions.get_print import update_icy, delete_icy
 from functions.get_food import gin_add, gin_rem
-from functions.get_pokemon import get_poke, get_move
 from functions.get_help import get_com
 from functions.get_animePhoto import get_photo
 
@@ -156,17 +155,6 @@ async def on_message(msg):
     print(msg.content)
     ans = random.choice(lover) + icy
     await msg.channel.send(ans)
-  if msg.content.startswith("$pokemon") :
-    st = msg.content.split('$pokemon ',1)[1]
-    poke = get_poke(st)
-    move = get_move(st)
-    m1 = "[ " + move[0] + " ]"
-    m2 = "[ " + move[1] + " ]"
-    m3 = "[ " + move[2] + " ]"
-    m4 = "[ " + move[3] + " ]"
-    mx = m1 + " " + m3 + "\n" + m2 + " " + m4
-    ans = "```Type : " + poke + "\nMoves \n" + mx + "```" 
-    await msg.channel.send(ans);
   if msg.content.startswith('$mean') :
     a = msg.content.split('$mean ',1)[1]
     dat = get_mean(a)
