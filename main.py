@@ -186,8 +186,6 @@ async def on_message(msg):
     await msg.channel.send(ans)
   if msg.content == '$photo' :
     ur = get_photo()
-    # urllib.request.urlretrieve(ur, "Name.jpg")
-    # await msg.channel.send(file=discord.File('Name.jpg'))
     await msg.channel.send(ur)
   
 alive()
