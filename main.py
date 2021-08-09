@@ -41,7 +41,7 @@ banner = [
 @client.event 
 async def on_ready():
   print('Icy : {0.user}666-'.format(client))
-  await client.change_presence(activity = discord.Streaming(name = 'Free Fire', url = 'https://www.twitch.tv/directory/game/Garena%20Free%20Fire'))
+  await client.change_presence(activity = discord.Activity(type=discord.ActivityType.watching, name = str(len(client.guilds)) + ' servers!'))
 
 funny = [
   "55",
@@ -51,7 +51,12 @@ funny = [
   "lmao",
   "LMAO",
   "ฮ่า",
-  "ขำ"
+  "ขำ",
+	"๕๕๕",
+	"๕ ๕ ๕",
+	"666",
+	"hoho",
+	"6 6 6"
 ]
 
 @client.event
